@@ -1,0 +1,57 @@
+CREATE TABLE tourneys (
+name varchar(30),
+wins real,
+best real,
+size real
+);
+
+CREATE TABLE dinners (
+name varchar(30),
+birthdate date,
+entree varchar(30),
+side varchar(30),
+dessert varchar(30)
+);
+
+INSERT INTO tourneys (name, wins, best, size)
+VALUES ('Dolly', '7', '245', '8.5'),
+('Etta', '4', '283', '9'),
+('Irma', '9', '266', '7'),
+('Barbara', '2', '197', '7.5'),
+('Gladys', '13', '273', '8');
+
+
+INSERT INTO dinners (name, birthdate, entree, side, dessert)
+VALUES ('Dolly', '1946-01-19', 'steak', 'salad', 'cake'),
+('Etta', '1938-01-25', 'chicken', 'fries', 'ice cream'),
+('Irma', '1941-02-18', 'tofu', 'fries', 'cake'),
+('Barbara', '1948-12-25', 'tofu', 'salad', 'ice cream'),
+('Gladys', '1944-05-28', 'steak', 'fries', 'ice cream');
+
+
+QUERY DI SELEZIONE:
+
+SELECT name FROM dinners;
+SELECT name, birthdate FROM dinners;
+SELECT * FROM tourneys;
+SELECT size FROM tourneys WHERE name = 'Irma';
+
+QUERY DI AGGREGATE FUNCTIONS:
+
+SELECT COUNT(entree) FROM dinners WHERE entree = 'tofu';
+SELECT AVG(best) FROM tourneys;
+SELECT SUM(wins) FROM tourneys;
+
+EXAMPLE of JOIN:
+
+SELECT tourneys.name, tourneys.size, dinners.birthdate
+FROM tourneys
+JOIN dinners ON tourneys.name=dinners.name;
+
+EXAMPLE of LEFT JOIN:
+
+INSERT INTO tourneys (name, wins, best, size)
+VALUES ('Bettye', '0', '193', '9');
+
+INSERT INTO dinners (name, birthdate, entree, side, dessert)
+VALUES ('Lesley', '1946-05-02', 'steak', 'salad', 'ice cream');
