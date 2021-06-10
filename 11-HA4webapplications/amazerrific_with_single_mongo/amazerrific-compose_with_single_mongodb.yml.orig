@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+        web-app:
+                container_name: amazerrific_container
+                image: amazerrific_mongo_image
+                restart: always
+                build: .
+                ports: 
+                        - "8888:8888"
+                links:
+                        - mongo
+        mongo:
+                container_name: mongo_container
+                image: mongo
+                volumes: 
+                        - ./data:/data/db
+                ports:
+                        - '27018:27017'
